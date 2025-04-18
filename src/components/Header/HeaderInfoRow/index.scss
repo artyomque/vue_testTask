@@ -1,5 +1,5 @@
 @import "@/assets/scss/base/vars";
-.header-info-row {
+.info-row {
   display: flex;
   align-items: center;
   gap: 18px;
@@ -9,12 +9,27 @@
     background-color: $pink-main;
     padding: 7px;
     border-radius: 50%;
-    height: 100%;
-    width: 100%;
+    height: 40px;
+    width: 40px;
+
+    @include mobile() {
+      display: none;
+    }
   }
 
   &__text {
     font-weight: 600;
     font-size: 18px;
+
+    &--user {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    &--rate {
+      font-size: 12px;
+      font-weight: 500;
+      color: #797979;
+    }
   }
 }

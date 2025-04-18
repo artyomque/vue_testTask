@@ -8,8 +8,8 @@ defineProps<Props>();
 </script>
 
 <template>
-  <button class="header-button" @click="onClick">
-    <img :src="icon" alt="" class="header-button__icon" />
+  <button class="button" @click="onClick">
+    <img :src="icon" alt="" class="button__icon" />
   </button>
 </template>
 

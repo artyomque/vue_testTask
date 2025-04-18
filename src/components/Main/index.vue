@@ -21,8 +21,16 @@ import ChatPanel from "@/components/Main/ChatPanel/index.vue";
   column-gap: 30px;
   margin-bottom: 60px;
 
+  @include sm-lg() {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+    margin-bottom: 0;
+  }
+
   @include mobile() {
     grid-template-columns: 1fr;
+    row-gap: 20px;
+    margin-bottom: 0;
   }
 }
 </style>

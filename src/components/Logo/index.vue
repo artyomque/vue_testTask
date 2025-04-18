@@ -7,6 +7,21 @@ defineProps<Props>();
 </script>
 
 <template>
-  <img v-if="type === `header`" src="/Logo/Logo_header.svg" />
-  <img v-if="type === `footer`" src="/Logo/Logo_footer.svg" />
+  <img class="logo" v-if="type === `header`" src="/Logo/Logo_header.svg" />
+  <img class="logo" v-if="type === `footer`" src="/Logo/Logo_footer.svg" />
 </template>
+
+<style lang="scss" scoped>
+@import "@/assets/scss/base/vars";
+.logo {
+  width: 219px;
+
+  @include sm-lg {
+    width: 209px;
+  }
+
+  @include mobile {
+    width: 181px;
+  }
+}
+</style>

@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import ItemList from "@/components/Main/FilesPanel/ItemList/index.vue";
-import { ref, computed } from "vue";
-
-const filesAvailable = ref(true);
+import { useScreenSize } from "@/plugins/useScreenSize";
 
 const files = [
   { name: `Company Name 11/23`, available: false },
@@ -12,10 +10,12 @@ const files = [
   { name: `Company Name 7/23`, available: true },
   { name: `Company Name 6/23`, available: true },
 ];
+
+const { isMobile } = useScreenSize(600);
 </script>
 
 <template>
-  <div class="files">
+  <div v-if="!isMobile" class="files">
     <h2 class="files__title">Файлы</h2>
     <div v-if="!files.length" class="files__body">
       <img class="files__img" src="/images/folder.png" />
@@ -42,6 +42,10 @@ const files = [
   padding: 28px 0;
   max-height: 705px;
 
+  @include mobile() {
+    box-shadow: none;
+  }
+
   &__title {
     padding-left: 20px;
     font-size: 24px;
@@ -64,10 +68,14 @@ const files = [
       border-radius: 20px;
     }
 
-    @include mobile() {
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
+    @include mobile-sm {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @include sm-lg() {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
     }
   }
 
