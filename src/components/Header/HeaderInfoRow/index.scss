@@ -12,6 +12,11 @@
     height: 40px;
     width: 40px;
 
+    transition: background-color 0.2s ease-in;
+    &:hover {
+      background-color: #ce00a2;
+    }
+
     @include mobile() {
       display: none;
     }
