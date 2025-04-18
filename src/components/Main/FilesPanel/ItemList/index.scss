@@ -1,0 +1,30 @@
+@import "@/assets/scss/base/vars";
+.category {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  &__name {
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__btn {
+    text-align: end;
+    color: $pink-main;
+  }
+}

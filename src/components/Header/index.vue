@@ -23,40 +23,5 @@ import HeaderButton from "@/components/Header/HeaderButton/index.vue";
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/base/vars";
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  margin: 33px 0;
-
-  @include mobile() {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  &__nav {
-    display: flex;
-    gap: 26px;
-
-    @include mobile() {
-      justify-content: space-between;
-    }
-  }
-
-  &__actions {
-    display: flex;
-    gap: 26px;
-  }
-
-  &__info {
-    display: flex;
-    gap: 20px;
-
-    @include mobile() {
-      flex-direction: column-reverse;
-      gap: 4px;
-    }
-  }
-}
+@import "./index.scss";
 </style>

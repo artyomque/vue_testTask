@@ -6,6 +6,7 @@ type Props = {
   categoryName: string;
   items: { name: string; available: boolean }[];
   visibleCount: number;
+  mobileVersion?: boolean;
 };
 
 const visibleItems = computed(() => props.items.slice(0, props.visibleCount));
@@ -29,7 +30,7 @@ const props = defineProps<Props>();
   <div>
     <div class="category__header">
       <h3 class="category__name">{{ categoryName }}</h3>
-      <button @click="toggleShowItems()" class="category__btn">
+      <button v-if="!mobileVersion" @click="toggleShowItems()" class="category__btn">
         <img v-if="showItems" src="/icons/arrow-up.svg" />
         <img v-else style="transform: scaleY(-1)" src="/icons/arrow-up.svg" />
       </button>
@@ -62,34 +63,5 @@ const props = defineProps<Props>();
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/base/vars";
-.category {
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-
-  &__name {
-    font-size: 16px;
-    font-weight: 600;
-  }
-}
-
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-
-  &__wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  &__btn {
-    text-align: end;
-    color: $pink-main;
-  }
-}
+@import "./index.scss";
 </style>

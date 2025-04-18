@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { ref, provide } from "vue";
 import ItemList from "@/components/Main/FilesPanel/ItemList/index.vue";
 import { useScreenSize } from "@/plugins/useScreenSize";
 
@@ -12,6 +13,9 @@ const files = [
 ];
 
 const { isMobile } = useScreenSize(600);
+
+const mediaplansAreOpen = ref(false);
+const reportsAreOpen = ref(false);
 </script>
 
 <template>
@@ -28,77 +32,39 @@ const { isMobile } = useScreenSize(600);
       <ItemList :category-name="`Отчеты`" :items="files" :visible-count="4" />
     </div>
   </div>
+
+  <div class="mobile" v-else>
+    <div class="mobile__buttons">
+      <button
+        @click="mediaplansAreOpen = !mediaplansAreOpen"
+        :class="['mobile__btn', { 'mobile__btn--active': mediaplansAreOpen }]"
+      >
+        Медиапланы
+      </button>
+      <button
+        @click="reportsAreOpen = !reportsAreOpen"
+        :class="['mobile__btn', { 'mobile__btn--active': reportsAreOpen }]"
+      >
+        Отчеты
+      </button>
+    </div>
+    <ItemList
+      v-if="mediaplansAreOpen"
+      :category-name="`Медиапланы`"
+      :items="files"
+      :visible-count="4"
+      :mobile-version="true"
+    />
+    <ItemList
+      v-if="reportsAreOpen"
+      :category-name="`Отчеты`"
+      :items="files"
+      :visible-count="4"
+      :mobile-version="true"
+    />
+  </div>
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/base/vars";
-.files {
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
-  border-radius: 20px;
-  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.08);
-  gap: 46px;
-  padding: 28px 0;
-  max-height: 705px;
-
-  @include mobile() {
-    box-shadow: none;
-  }
-
-  &__title {
-    padding-left: 20px;
-    font-size: 24px;
-    font-weight: 600;
-  }
-
-  &__body {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    padding: 0 20px;
-    overflow-y: scroll;
-
-    &::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: #b5b5b5;
-      border-radius: 20px;
-    }
-
-    @include mobile-sm {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-
-    @include sm-lg() {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  &__list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  &__text {
-    text-align: center;
-    font-size: 16px;
-    font-weight: 500;
-  }
-
-  &__img {
-    max-height: 314px;
-    max-width: 255px;
-
-    @include mobile() {
-      height: 304px;
-      width: 248px;
-    }
-  }
-}
+@import "./index.scss";
 </style>
